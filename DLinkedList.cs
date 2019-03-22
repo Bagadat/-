@@ -98,7 +98,7 @@ namespace List
         {
             DoubleK knot = new DoubleK(data); 
             if (index > count)
-                throw new InvalidOperationException();
+                throw new IndexOutOfRangeException();
             else if(index==0)
             {
                 AddFirst(data);
@@ -137,7 +137,9 @@ namespace List
         public int Get(int index)
         {
             if (head == null)
-                return -2;
+                throw new IndexOutOfRangeException();
+            if (index > count)
+                throw new IndexOutOfRangeException();
             current = head;
            
             for(int i =0;i<count;i++)
@@ -146,6 +148,7 @@ namespace List
                     return current.data;
                 current = current.Next;
             }
+
             return -1;
         }
         
