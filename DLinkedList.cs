@@ -18,7 +18,7 @@ namespace List
         {
             DoubleK knot = new DoubleK(data);
 
-            if (head == null)
+            if (tail == null)
                 head = knot;
             else
             {
@@ -50,22 +50,18 @@ namespace List
                 throw new InvalidOperationException();
             else
             {
-                
-
-                while (current != null && count!=index)
+                for (int i = 0; i < count; i++)
                 {
+                    if (current != null)
+                    {
+                        current.Previous.Next = current.Next;
+
+                        current.Next.Previous = current.Previous;
+                    }
+                    else
+                        throw new NullReferenceException();
                     current = current.Next;
-                    
                 }
-                if (current != null && count==index)
-                {
-                    current.Previous.Next = current.Next;
-
-                    current.Next.Previous = current.Previous;
-                }
-                else
-                    throw new NullReferenceException();
-                
             }
             count--;
            
@@ -93,24 +89,26 @@ namespace List
                 throw new InvalidOperationException();
             else
             {
-                
                 current = head;
-                while(current != null && count!=index)
+
+                for (int i = 0; i < count; i++)
                 {
-                    current = current.Next;
-                    
-                }
-                
-               
-                if (current != null && count==index)
-                {
-                    current.Previous.Next = knot;
+                    if (index == i)
+                    {
+                        if (current != null )
+                        {
+                            current.Previous.Next = knot;
 
-                    knot.Previous = current.Previous;
+                            knot.Previous = current.Previous;
 
-                    current.Previous = knot;
+                            current.Previous = knot;
 
-                    knot.Next = current;
+                            knot.Next = current;
+                        }
+                        else
+                            throw new NullReferenceException();
+                        current = current.Next;
+                    }
                 }
             }
             count++;
@@ -118,12 +116,15 @@ namespace List
 
         public int Get(int index)
         {
+            if (head == null)
+                return -1;
             current = head;
-            while (count != index)
+           
+            for(int i =0;i<count;i++)
             {
-                current = current.Next;
-                if(count==index)
+                if (index == i)
                     return current.data;
+                current = current.Next;
             }
             return -1;
         }

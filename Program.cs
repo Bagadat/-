@@ -12,17 +12,15 @@ namespace List
         {
             LinkedList linkedlist = new LinkedList();
 
-            linkedlist.AddFirst(1);
-            linkedlist.AddLast(2);
             
-            for (int i = 3;i < 11; i++)
+            for (int i = 1;i < 11; i++)
             {
                 linkedlist.AddLast(i);
             }
             linkedlist.AddLast(55);
-
-            linkedlist.Remove(3);
-            Console.WriteLine(linkedlist.Contains(3));
+            linkedlist.InsertIndex(4, 15);
+            Console.WriteLine(linkedlist.Get(6));
+            Console.WriteLine(linkedlist.Contains(31));
            
 
             Console.ReadKey();
