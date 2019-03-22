@@ -17,10 +17,10 @@ namespace List
                 linkedlist.AddLast(i);
             }
             linkedlist.AddLast(55);
-            linkedlist.InsertIndex(0, 15);
-            Console.WriteLine(linkedlist.Get(0));
-            linkedlist.Remove(2);
-            Console.WriteLine(linkedlist.Get(2));
+            linkedlist.InsertIndex(1, 15);
+            Console.WriteLine(linkedlist.Get(1));
+            linkedlist.Remove(1);
+            Console.WriteLine(linkedlist.Get(1));
             //  Console.WriteLine(linkedlist.Contains(31));
 
 

@@ -49,41 +49,28 @@ namespace List
            
             if (index > count)
                 throw new InvalidOperationException();
-            if (current != null)
-            {
-               
-
-                
-            }
+            
             else
             {
                 for (int i = 0; i < count; i++)
                 {
                     if (index == i)
                     {
-                       
-
                         if (current != null)
                         {
-                            if (current.Next != null)
-                            {
-                                current.Next.Previous = current.Previous;
-                            }
-                            else
-                            {
-                                tail = current.Previous;
-                            }
+                            current.Previous.Next = current.Next;
 
-                            if (current.Previous != null)
-                            {
-                                current.Previous.Next = current.Next;
-                            }
-                            else
-                            {
-                                head = current.Next;
-                            }                        }
-                        else
-                            throw new NullReferenceException();
+                            current.Next.Previous = current.Previous;
+                        }
+                        else if(current.Next==null)
+                        {
+                            tail = current.Previous;
+                        }
+                        else if(current.Previous==null)
+                        {
+                            head = current.Next;
+                        }
+                            
                     }
                     current = current.Next;
                 }
