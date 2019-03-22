@@ -46,20 +46,45 @@ namespace List
         public void Remove(int index)
         {
             current = head;
+           
             if (index > count)
                 throw new InvalidOperationException();
+            if (current != null)
+            {
+               
+
+                
+            }
             else
             {
                 for (int i = 0; i < count; i++)
                 {
-                    if (current != null)
+                    if (index == i)
                     {
-                        current.Previous.Next = current.Next;
+                       
 
-                        current.Next.Previous = current.Previous;
+                        if (current != null)
+                        {
+                            if (current.Next != null)
+                            {
+                                current.Next.Previous = current.Previous;
+                            }
+                            else
+                            {
+                                tail = current.Previous;
+                            }
+
+                            if (current.Previous != null)
+                            {
+                                current.Previous.Next = current.Next;
+                            }
+                            else
+                            {
+                                head = current.Next;
+                            }                        }
+                        else
+                            throw new NullReferenceException();
                     }
-                    else
-                        throw new NullReferenceException();
                     current = current.Next;
                 }
             }
@@ -87,6 +112,14 @@ namespace List
             DoubleK knot = new DoubleK(data); 
             if (index > count)
                 throw new InvalidOperationException();
+            else if(index==0)
+            {
+                AddFirst(data);
+            }
+            else if(index==count)
+            {
+                AddLast(data);
+            }
             else
             {
                 current = head;
@@ -107,8 +140,8 @@ namespace List
                         }
                         else
                             throw new NullReferenceException();
-                        current = current.Next;
                     }
+                    current = current.Next;
                 }
             }
             count++;
@@ -117,7 +150,7 @@ namespace List
         public int Get(int index)
         {
             if (head == null)
-                return -1;
+                return -2;
             current = head;
            
             for(int i =0;i<count;i++)
