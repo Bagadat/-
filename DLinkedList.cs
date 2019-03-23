@@ -9,9 +9,9 @@ namespace List
 {
     public class LinkedList
     {
-        public DoubleK head;
-        public DoubleK current;
-        public DoubleK tail;
+        private DoubleK head;
+        
+        private DoubleK tail;
         int count = 0;
 
         public void AddLast(int data)
@@ -45,7 +45,8 @@ namespace List
 
         public void Remove(int index)
         {
-            current = head;
+             
+            DoubleK current = head;
            
             if (index > count)
                 throw new InvalidOperationException();
@@ -81,24 +82,22 @@ namespace List
 
         public bool Contains(int data)
         {
+          
+                for (DoubleK current = head; current != null; current = current.Next)
+                {
+                    if (current.data.Equals(data))
+
+                        return true;
+                }
             
-            current = head;
-            while (current != null)
-            {
-                if (current.data.Equals(data))
-
-                    return true;
-
-                current = current.Next;
-            }
             return false;
         }
 
         public void InsertIndex(int index,int data)
         {
             DoubleK knot = new DoubleK(data); 
-            if (index > count)
-                throw new IndexOutOfRangeException();
+            if (index > count || index < 0)
+                throw new IndexOutOfRangeException("Вышел за пределы списка, МУДИЛА!!!");
             else if(index==0)
             {
                 AddFirst(data);
@@ -109,7 +108,7 @@ namespace List
             }
             else
             {
-                current = head;
+                DoubleK current = head;
 
                 for (int i = 0; i < count; i++)
                 {
@@ -136,12 +135,12 @@ namespace List
 
         public int Get(int index)
         {
+            DoubleK current = head;
             if (head == null)
                 throw new IndexOutOfRangeException();
-            if (index > count)
+            if (index > count || index < 0)
                 throw new IndexOutOfRangeException();
-            current = head;
-           
+            
             for(int i =0;i<count;i++)
             {
                 if (index == i)
@@ -149,7 +148,21 @@ namespace List
                 current = current.Next;
             }
 
-            return -1;
+            return 404;
+        }
+
+        public void Intersect(LinkedList list,LinkedList list1,LinkedList list2)
+        {
+            for (int i = 0; i < list.count; i++)
+            {
+                for (int j = 0; j < list1.count; ++j)
+                {
+                    if(list.Get(i)==list1.Get(j))
+                    {
+                        list2.AddLast(list.Get(i));
+                    }
+                }
+            }
         }
         
     }
