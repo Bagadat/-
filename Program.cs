@@ -42,8 +42,8 @@ namespace List
             }
             Console.WriteLine();
             LinkedList linkedlist2 = new LinkedList();
-            linkedlist2.Intersect(linkedlist, linkedlist1, linkedlist2);
-            for (int i = 0; i < 3; i++)
+            linkedlist1.Intersect(linkedlist,linkedlist2);
+            for(int i=0;i<3;++i)
             {
                 Console.Write(linkedlist2.Get(i));
             }

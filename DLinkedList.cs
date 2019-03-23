@@ -12,7 +12,7 @@ namespace List
         private DoubleK head;
         
         private DoubleK tail;
-        int count = 0;
+        private int count = 0 ;
 
         public void AddLast(int data)
         {
@@ -135,35 +135,35 @@ namespace List
 
         public int Get(int index)
         {
+            
             DoubleK current = head;
             if (head == null)
                 throw new IndexOutOfRangeException();
             if (index > count || index < 0)
                 throw new IndexOutOfRangeException();
             
-            for(int i =0;i<count;i++)
+            for(int i =0;i!=index;i++)
             {
-                if (index == i)
-                    return current.data;
                 current = current.Next;
             }
 
-            return 404;
+            return current.data;
         }
 
-        public void Intersect(LinkedList list,LinkedList list1,LinkedList list2)
+        public LinkedList Intersect(LinkedList list,LinkedList list1)
         {
-            for (int i = 0; i < list.count; i++)
+            for(DoubleK current = head; current != null; current = current.Next)
             {
-                for (int j = 0; j < list1.count; ++j)
+                if (list.Contains(current.data))
                 {
-                    if(list.Get(i)==list1.Get(j))
-                    {
-                        list2.AddLast(list.Get(i));
-                    }
+                    list1.AddLast(current.data);
                 }
             }
+            return list1;
         }
         
+                
     }
+        
 }
+
