@@ -1,0 +1,7 @@
+C:\Users\baga_\source\repos\Hash\Hash\bin\Debug\Hash.exe.config
+C:\Users\baga_\source\repos\Hash\Hash\bin\Debug\Hash.exe
+C:\Users\baga_\source\repos\Hash\Hash\bin\Debug\Hash.pdb
+C:\Users\baga_\source\repos\Hash\Hash\obj\Debug\HashTable.csprojAssemblyReference.cache
+C:\Users\baga_\source\repos\Hash\Hash\obj\Debug\HashTable.csproj.CoreCompileInputs.cache
+C:\Users\baga_\source\repos\Hash\Hash\obj\Debug\Hash.exe
+C:\Users\baga_\source\repos\Hash\Hash\obj\Debug\Hash.pdb
