@@ -10,10 +10,12 @@ namespace Hash
     {
         public int key { get; set; }
         public int data { get; set; }
+        public Hashnode next;
         public Hashnode(int key, int data)
         {
             this.key = key;
             this.data = data;
+            next = null; 
         }
 
        

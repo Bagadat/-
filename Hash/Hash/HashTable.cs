@@ -10,12 +10,13 @@ namespace Hash
 {
     class HashTable
     {
-        private readonly int  size;
+        private int  size;
         private LinkedList<Hashnode>[] numbers;
         public HashTable(int size)
         {
             this.size = size;
             numbers = new LinkedList<Hashnode>[size];
+            
         }
         public int Position(int key)
         {
@@ -26,7 +27,7 @@ namespace Hash
         {
             int position = Position(key);
             LinkedList<Hashnode> linkedList = GetLinkedList(position);
-            Hashnode numbers = new Hashnode(key, data);
+            Hashnode numbers = new Hashnode( key,data);
             linkedList.AddLast(numbers);
         }
 
@@ -39,6 +40,23 @@ namespace Hash
                 if(number.key.Equals(key))
                 {
                     return true;
+                }
+            }
+            return false;
+        }
+        
+        public bool Contains(int key, int data)
+        {
+            int position = Position(key);
+            LinkedList<Hashnode> linkedList = GetLinkedList(position);
+            foreach (var item in linkedList)
+            {
+                if(item.key.Equals(key))
+                {
+                    if (item.data.Equals(data))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -75,5 +93,16 @@ namespace Hash
             }
             return linkedList;
         }
+
+        public HashTable Intersect(HashTable table)
+        {
+          
+            for ()
+            {
+                if(this.Contains())
+            }
+        }
+        e
+       
     }
 }
