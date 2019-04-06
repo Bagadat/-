@@ -44,7 +44,7 @@ namespace List
         }
         public void RemoveData(T data)
         {
-            for (DoubleK<T> current = head; current!=null;current= current.Next )
+            for (DoubleK<T> current = head; current!=null; current=current.Next )
             {
                  if (current.data.Equals(data))
                  {
@@ -56,7 +56,9 @@ namespace List
                     else
                     {
                         if (current != head) current.Previous.Next = current.Next;
+                        else head = head.Next;
                         if (current != tail) current.Next.Previous = current.Previous;
+                        else tail = tail.Previous;
                     }
                     break;
                  }

@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Hash
 {
-    class Hashnode
+    class Hashnode<K,D>
     {
-        public int key { get; set; }
-        public int data { get; set; }
-        public Hashnode next;
+        public K key { get; set; }
+        public D data { get; set; }
         public override bool Equals(object obj)
         {
-            return this.key == ((Hashnode)obj).key; //base.Equals(obj);
+            return this.key.Equals (((Hashnode<K,D>)obj).key); //base.Equals(obj);
         }
-        public Hashnode(int key, int data)
+        public override int GetHashCode()
+        {
+            return key.GetHashCode();
+        }
+        public Hashnode(K key, D data=default(D))
         {
             this.key = key;
             this.data = data;
-            next = null; 
         }
-
-       
     }
 }
