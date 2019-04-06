@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    public class LinkedList
+    public class LinkedList<T>:IEnumerable<T>
     {
-        private DoubleK head;
+        private DoubleK<T> head;
         
-        private DoubleK tail;
+        private DoubleK<T> tail;
         private int count = 0 ;
 
-        public void AddLast(int data)
+        public void AddLast(T data)
         {
-            DoubleK knot = new DoubleK(data);
+            DoubleK<T> knot = new DoubleK<T>(data);
 
             if (tail == null)
                 head = knot;
@@ -29,10 +29,10 @@ namespace List
             count++;
         }
 
-        public void AddFirst(int data)
+        public void AddFirst(T data)
         {
-            DoubleK knot = new DoubleK(data);
-            DoubleK current = head;
+            DoubleK<T> knot = new DoubleK<T>(data);
+            DoubleK<T> current = head;
             knot.Next = current;
             head = knot;
             if (count == 0)
@@ -42,15 +42,36 @@ namespace List
 
             count++;
         }
+        public void RemoveData(T data)
+        {
+            for (DoubleK<T> current = head; current!=null;current= current.Next )
+            {
+                 if (current.data.Equals(data))
+                 {
+                    if (current == head && current == tail)
+                    {
+                        head = null;
+                        tail = null;
+                    }
+                    else
+                    {
+                        if (current != head) current.Previous.Next = current.Next;
+                        if (current != tail) current.Next.Previous = current.Previous;
+                    }
+                    break;
+                 }
+            }
+            count--;
+        }
 
-        public void Remove(int index)
+        public void RemoveIndex(int index)
         {
              
-            DoubleK current = head;
+            DoubleK<T> current = head;
            
             if (index > count)
-                throw new InvalidOperationException();
-            
+                throw new IndexOutOfRangeException("Вышел за пределы списка, МУДИЛА!!!");
+
             else
             {
                 for (int i = 0; i < count; i++)
@@ -80,10 +101,10 @@ namespace List
            
         }
 
-        public bool Contains(int data)
+        public bool Contains(T data)
         {
           
-                for (DoubleK current = head; current != null; current = current.Next)
+                for (DoubleK<T> current = head; current != null; current = current.Next)
                 {
                     if (current.data.Equals(data))
 
@@ -93,9 +114,9 @@ namespace List
             return false;
         }
 
-        public void InsertIndex(int index,int data)
+        public void InsertIndex(int index,T data)
         {
-            DoubleK knot = new DoubleK(data); 
+            DoubleK<T> knot = new DoubleK<T>(data); 
             if (index > count || index < 0)
                 throw new IndexOutOfRangeException("Вышел за пределы списка, МУДИЛА!!!");
             else if(index==0)
@@ -108,7 +129,7 @@ namespace List
             }
             else
             {
-                DoubleK current = head;
+                DoubleK<T> current = head;
 
                 for (int i = 0; i < count; i++)
                 {
@@ -133,10 +154,10 @@ namespace List
             count++;
         }
 
-        public int Get(int index)
+        public T Get(int index)
         {
             
-            DoubleK current = head;
+            DoubleK<T> current = head;
             if (head == null)
                 throw new IndexOutOfRangeException();
             if (index > count || index < 0)
@@ -150,9 +171,9 @@ namespace List
             return current.data;
         }
 
-        public LinkedList Intersect(LinkedList list,LinkedList list1)
+        public LinkedList<T> Intersect(LinkedList<T> list,LinkedList<T> list1)
         {
-            for(DoubleK current = head; current != null; current = current.Next)
+            for(DoubleK<T> current = head; current != null; current = current.Next)
             {
                 if (list.Contains(current.data))
                 {
@@ -161,9 +182,26 @@ namespace List
             }
             return list1;
         }
-        
-                
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this).GetEnumerator();
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            DoubleK<T> current = head;
+            while (current != null)
+            {
+                yield return current.data;
+                current = current.Next;
+            }
+        }
+
+
+
+
     }
-        
+
 }
 

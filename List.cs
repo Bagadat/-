@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    public class DoubleK
+    public class DoubleK<T>
     {
-        public int data { get; set; }
-        public DoubleK (int data)
+        public T data { get; set; }
+        public DoubleK (T data)
         {
            this.data = data;
         }
 
-        public DoubleK Next { get; set; }
-        public DoubleK Previous { get; set; } 
+        public DoubleK<T> Next { get; set; }
+        public DoubleK<T> Previous { get; set; } 
             
     }
 }
